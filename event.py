@@ -20,7 +20,7 @@ import hashlib
 import os
 import sys
 
-from urllib2 import urlopen, URLError
+from urllib.request import urlopen, URLError
 
 def handle_event(type, **kwargs):
     """
@@ -38,7 +38,7 @@ def handle_event(type, **kwargs):
         artist_album = "by %s on %s" % (kwargs.get("artist"), kwargs.get("album"))
 
         config_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
-        filename = os.path.join(config_dir, "covers", hashlib.sha1(cover_url).hexdigest())
+        filename = os.path.join(config_dir, "covers", hashlib.sha1(cover_url.encode('utf-8').hexdigest())
         cover = fetch_cover(cover_url, filename)
 
         obj_path = "/org/freedesktop/Notifications"
@@ -74,7 +74,7 @@ def main(argv=None):
 
     # Read event type from command arguments
     if len(sys.argv) < 2:
-        print "error reading event type from command arguments"
+        print("error reading event type from command arguments")
 
     type = sys.argv[1]
 
