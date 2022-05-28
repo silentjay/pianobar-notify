@@ -1,3 +1,5 @@
+Quick and dirty fork of [mjkoo's script](https://github.com/mjkoo/pianobar-notify) updated for python3.
+
 #pianobar-notify
 
 A simple script to create dbus notification bubbles with album art and song
